@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import * as THREE from './three.module.min.js';
 
 /* =========================================================
  * 指尖绽放 · Hand Flower（鼠标版）
