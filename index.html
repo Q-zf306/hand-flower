@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <!-- 移动端视口：禁止缩放，适配刘海屏 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <!-- 微信/浏览器 全屏与主题色 -->
+  <meta name="theme-color" content="#05060f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <title>指尖绽放</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Three.js 渲染层 -->
+  <canvas id="stage"></canvas>
+
+  <!-- 加载进度（微信内 CDN 慢时可见） -->
+  <div id="loader">
+    <div class="moonLoader">🌙</div>
+    <div class="loadText">月光凝聚中…</div>
+    <div class="loadBar"><div id="loadFill"></div></div>
+  </div>
+
+  <!-- 首次操作提示（3 秒后淡出） -->
+  <div id="tip">☝️ 上下滑动 · 绽放<br>左右滑动 · 旋转</div>
+
+  <!-- HUD（底部极简状态条） -->
+  <div id="hud">
+    <div id="status">
+      <span class="dot"></span><span id="statusText"></span>
+    </div>
+    <div id="meter">
+      <div class="meterTrack"><div id="meterFill"></div></div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

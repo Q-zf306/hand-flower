@@ -1,0 +1,117 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #05060f;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #dfe6ff;
+  user-select: none;
+  overscroll-behavior: none;
+}
+
+/* ---------- Three.js 画布铺满 ---------- */
+#stage {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  z-index: 0;
+  cursor: grab;
+}
+#stage:active { cursor: grabbing; }
+
+/* ---------- 加载进度（微信内 CDN 慢时可见） ---------- */
+#loader {
+  position: fixed; inset: 0;
+  z-index: 30;
+  display: grid; place-items: center;
+  background: #05060f;
+  transition: opacity 0.6s;
+}
+#loader.done { opacity: 0; pointer-events: none; }
+.moonLoader {
+  font-size: 44px;
+  animation: moonFloat 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(255, 250, 210, 0.8));
+}
+@keyframes moonFloat {
+  0%,100% { transform: translateY(0) rotate(-6deg); }
+  50%     { transform: translateY(-10px) rotate(6deg); }
+}
+.loadText {
+  margin-top: 14px;
+  font-size: 14px; letter-spacing: 3px;
+  color: #9db9ff;
+}
+.loadBar {
+  margin-top: 12px;
+  width: 160px; height: 3px;
+  border-radius: 2px;
+  background: rgba(150, 170, 255, 0.15);
+  overflow: hidden;
+}
+#loadFill {
+  height: 100%; width: 30%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff9ecb, #8ad8ff);
+  animation: loadSlide 1.2s ease-in-out infinite;
+}
+@keyframes loadSlide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(160px); }
+}
+
+/* ---------- 首次操作提示 ---------- */
+#tip {
+  position: fixed;
+  left: 50%; top: 18%;
+  transform: translateX(-50%);
+  z-index: 15;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: rgba(10, 16, 40, 0.6);
+  backdrop-filter: blur(6px);
+  font-size: 13px; line-height: 1.8;
+  text-align: center;
+  color: #cfe0ff;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+#tip.show { opacity: 1; }
+
+/* ---------- HUD：底部极简状态 ---------- */
+#hud {
+  position: fixed;
+  left: 50%; bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  text-align: center;
+}
+#status {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 15px;
+  text-shadow: 0 0 10px rgba(180, 200, 255, 0.6);
+}
+#status .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #6effc0;
+  box-shadow: 0 0 8px #6effc0;
+}
+#meter {
+  margin-top: 8px;
+  width: 180px;
+}
+.meterTrack {
+  height: 4px; border-radius: 2px;
+  background: rgba(150, 170, 255, 0.18);
+  overflow: hidden;
+}
+#meterFill {
+  height: 100%; width: 0%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff9ecb, #c3a6ff, #8ad8ff);
+  box-shadow: 0 0 10px rgba(200, 160, 255, 0.8);
+  transition: width 0.1s linear;
+}
